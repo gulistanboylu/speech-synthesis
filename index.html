@@ -50,10 +50,22 @@
   function setVoice() {
       //console.log(this.value);
       msg.voice = voices.find(voice => voice.name === this.value);
+      toogle();
   }
 
+  function toogle(startOver = true) {
+    speechSynthesis.cancel();
+    if(startOver) {
+         speechSynthesis.speak(msg);
+    } 
+  }
+
+  function setOption(){
+      console.log(this.name, this.value);
+  }
   speechSynthesis.addEventListener('voiceschanged', populateVoices);
   voicesDropdown.addEventListener('change', setVoice);
+  options.forEach(option => option.addEventListener('change', setOption));
 </script>
 
 </body>
