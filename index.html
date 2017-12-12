@@ -53,10 +53,11 @@
       toogle();
   }
 
-  function toogle(startOver = true) {
+  function toogle(startOver = false) {
     speechSynthesis.cancel();
     if(startOver) {
          speechSynthesis.speak(msg);
+         console.log('basilsi');  
     } 
   }
 
@@ -66,6 +67,8 @@
   speechSynthesis.addEventListener('voiceschanged', populateVoices);
   voicesDropdown.addEventListener('change', setVoice);
   options.forEach(option => option.addEventListener('change', setOption));
+  speakButton.addEventListener('click',toogle);
+  stopButton.addEventListener('click', toogle.bind(null, false));
 </script>
 
 </body>
